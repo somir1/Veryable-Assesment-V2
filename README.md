@@ -25,7 +25,5 @@ The main focus of this iteration is on improving structure and maintainability, 
 
     1. Once cloned run `npm install` to install dependencies
     2. To start project run `npm run dev`
-
-### **Testing**
-    1. To run tests use `npm run test`
+    3. Add in `.env` file with `NEXT_PUBLIC_API_URL` set to `https://frontend-challenge.veryableops.com/`
 
