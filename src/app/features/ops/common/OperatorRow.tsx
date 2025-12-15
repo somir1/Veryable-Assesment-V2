@@ -1,25 +1,25 @@
 "use client";
 
 import { combinedName, convertedPercent } from "@/utils/helpers";
-import { Operator, Status } from "@/utils/types";
+import { Operator, Status } from "../types";
 import { Button, Stack, Typography, Chip } from "@mui/material";
 import { useEffect, useState } from "react";
 
 export const OperatorRow = ({ operator }: { operator: Operator }) => {
   const [status, setStatus] = useState<Status>("in");
+  const storageKey = `operator-status-${operator.id}`;
 
   useEffect(() => {
-    const saved = localStorage.getItem("operatorStatus");
+    const saved = localStorage.getItem(storageKey);
     if (saved === "in" || saved === "out") {
       setStatus(saved);
     }
-  }, []);
+  }, [storageKey]);
 
   const handleToggle = () => {
-    const opStatus: Status = status === "in" ? "out" : "in";
-
-    setStatus(opStatus);
-    localStorage.setItem("operatorStatus", opStatus);
+    const nextStatus: Status = status === "in" ? "out" : "in";
+    setStatus(nextStatus);
+    localStorage.setItem(storageKey, nextStatus);
   };
 
   return (
@@ -54,15 +54,13 @@ export const OperatorRow = ({ operator }: { operator: Operator }) => {
         </Typography>
       </Stack>
 
-      <Stack direction="row" spacing={1}>
-        <Button
-          variant={status === "out" ? "outlined" : "contained"}
-          size="small"
-          onClick={handleToggle}
-        >
-          {status === "out" ? "Check In" : "Check Out"}
-        </Button>
-      </Stack>
+      <Button
+        variant={status === "out" ? "outlined" : "contained"}
+        size="small"
+        onClick={handleToggle}
+      >
+        {status === "out" ? "Check In" : "Check Out"}
+      </Button>
     </Stack>
   );
 };
