@@ -19,6 +19,7 @@ The main focus of this iteration is on improving structure and maintainability, 
 
 ### **Notes**
     1. Mobile responsiveness is something I do want to add later on.
+    2. Add in Unit Tests.
 
 ### **Set up**
 
