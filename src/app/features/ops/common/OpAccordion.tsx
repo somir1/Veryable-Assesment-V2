@@ -11,13 +11,20 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { OperatorRow } from "./OperatorRow";
 import { OpCard } from "./Opcard";
-import { Op } from "../types";
+import { Op, OperatorSort } from "../types";
+import { useMemo } from "react";
+import { sortOperators } from "../utils/sortOperators";
 
 type OpAccordionProps = {
     op: Op;
+    sortBy: OperatorSort;
 };
 
-export const OpAccordion = ({ op }: OpAccordionProps) => {
+export const OpAccordion = ({ op, sortBy }: OpAccordionProps) => {
+
+    const sortedOperators = useMemo(() => {
+        return sortOperators(op.operators, sortBy);
+    }, [op.operators, sortBy]);
     return (
         <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -30,7 +37,7 @@ export const OpAccordion = ({ op }: OpAccordionProps) => {
                 </Typography>
 
                 <Stack spacing={1}>
-                    {op.operators.map((operator) => (
+                    {sortedOperators.map((operator) => (
                         <OperatorRow key={operator.id} operator={operator} />
                     ))}
                 </Stack>

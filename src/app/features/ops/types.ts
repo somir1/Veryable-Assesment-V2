@@ -25,3 +25,12 @@ export type Op = {
   checkOutExpirationTime: string;
   operators: Operator[];
 };
+
+export enum OperatorSort {
+  FIRST_NAME_ASC = "FIRST_NAME_ASC",
+  FIRST_NAME_DESC = "FIRST_NAME_DESC",
+  OPS_COMPLETED_ASC = "OPS_COMPLETED_ASC",
+  OPS_COMPLETED_DESC = "OPS_COMPLETED_DESC",
+  RELIABILITY_ASC = "RELIABILITY_ASC",
+  RELIABILITY_DESC = "RELIABILITY_DESC",
+}
